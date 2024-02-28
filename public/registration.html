@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/registration.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <h1>CryptoNet</h1>
+                </li>
+                <li><a href="main.html"><i class="fa-solid fa-house"></i>Home</a></li>
+                <li><a href="registration.html"><i class="fa-solid fa-user"></i>User</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="wrapper">
+        <div class="form-box login" id="loginForm">
+            <h2>Login</h2>
+            <form action="user-profile.html" method="post">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+                    <input type="text" name="username" required>
+                    <label>Username</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="key-outline"></ion-icon></span>
+                    <input type="password" name="password" required>
+                    <label>Password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">
+                        Remember me</label>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="login-register">
+                    <p>Don't you have an account? <a href="#" class="register-link">Register</a></p>
+                </div>
+            </form>
+        </div>
+
+
+
+        <div class="form-box register" id="registerForm">
+            <h2>Registration</h2>
+            <form id="registrationForm" action="/register" method="post">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="key-outline"></ion-icon></span>
+                    <input type="text" name="username" required>
+                    <label>Username</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="key-outline"></ion-icon></span>
+                    <input type="password" name="password" required>
+                    <label>Password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">
+                        I agree with the registration requirements</label>
+                </div>
+                <button id="registerButton" type="submit" class="btn">Register</button>
+                <div class="login-register">
+                    <p>Do you already have an account? <a href="#" class="login-link">Login</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div id="registrationSuccessMessage" style="display: none;">Registration Successful</div>
+
+        <script>
+            const registrationForm = document.getElementById('registrationForm');
+            const registrationSuccessMessage = document.getElementById('registrationSuccessMessage');
+
+            registrationForm.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Prevent default form submission
+
+                // Submit the form using Fetch API or other method
+                try {
+                    const response = await fetch('/register', {
+                        method: 'POST',
+                        body: new FormData(registrationForm)
+                    });
+                    if (response.ok) {
+                        registrationSuccessMessage.style.display = 'block';
+                    } else {
+                        // Handle error response if needed
+                    }
+                } catch (error) {
+                    console.error('Error registering user:', error);
+                }
+            });
+        </script>
+
+
+
+    </div>
+
+    <script src="scripts/swipe.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
